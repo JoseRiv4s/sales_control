@@ -17,35 +17,30 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-// import lombok.RequiredArgsConstructor; // Ya no es necesario si solo UsersRepository queda como final
 
 @Configuration
 @EnableWebSecurity
-// Ya no usamos @RequiredArgsConstructor porque eliminamos el 'final JwtAuthenticationFilter'
-// y UsersRepository es la única dependencia final que necesita un constructor.
 public class SecurityConfig {
 
-    // Mantenemos UsersRepository si es necesario para el UserDetailsService
     private final UsersRepository usersRepository;
 
-    // Constructor manual para UsersRepository, ya que eliminamos @RequiredArgsConstructor
     public SecurityConfig(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
-    // El JwtAuthenticationFilter ahora se inyecta como un parámetro del método @Bean
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         return http
+                .cors()
+                .and()
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authRequest -> authRequest
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager -> sessionManager
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
-                // El filtro se añade aquí, Spring ya habrá creado el bean JwtAuthenticationFilter
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
