@@ -1,7 +1,7 @@
 package com.sales_control.rest.sales_api.service.contract;
 
-import com.sales_control.rest.sales_api.dto.CategoryRequestDTO;
-import com.sales_control.rest.sales_api.dto.CategoryResponseDTO;
+import com.sales_control.rest.sales_api.dto.categories.CategoryRequestDTO;
+import com.sales_control.rest.sales_api.dto.categories.CategoryResponseDTO;
 import java.util.List;
 
 public interface CategoriesService {
