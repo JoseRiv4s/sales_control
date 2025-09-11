@@ -1,4 +1,4 @@
-package com.sales_control.rest.sales_api.dto;
+package com.sales_control.rest.sales_api.dto.categories;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

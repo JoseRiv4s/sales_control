@@ -1,6 +1,5 @@
-package com.sales_control.rest.sales_api.dto;
+package com.sales_control.rest.sales_api.dto.login;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data

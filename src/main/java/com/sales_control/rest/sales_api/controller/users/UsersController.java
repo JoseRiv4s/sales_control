@@ -1,8 +1,7 @@
-package com.sales_control.rest.sales_api.controller;
+package com.sales_control.rest.sales_api.controller.users;
 
 import com.sales_control.rest.sales_api.dto.RegisterUserDTO;
 import com.sales_control.rest.sales_api.dto.UsersDTO;
-import com.sales_control.rest.sales_api.entities.UsersEntity;
 import com.sales_control.rest.sales_api.service.contract.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

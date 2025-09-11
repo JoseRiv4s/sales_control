@@ -1,4 +1,4 @@
-package com.sales_control.rest.sales_api.controller;
+package com.sales_control.rest.sales_api.controller.auth;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
