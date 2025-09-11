@@ -1,8 +1,8 @@
-package com.sales_control.rest.sales_api.controller;
+package com.sales_control.rest.sales_api.controller.auth;
 
-import com.sales_control.rest.sales_api.dto.AuthResponse;
-import com.sales_control.rest.sales_api.dto.LoginRequest;
-import com.sales_control.rest.sales_api.dto.RegisterRequest;
+import com.sales_control.rest.sales_api.dto.login.AuthResponse;
+import com.sales_control.rest.sales_api.dto.login.LoginRequest;
+import com.sales_control.rest.sales_api.dto.login.RegisterRequest;
 import com.sales_control.rest.sales_api.service.impl.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

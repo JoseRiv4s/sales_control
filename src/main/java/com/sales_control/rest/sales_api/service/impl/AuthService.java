@@ -1,8 +1,8 @@
 package com.sales_control.rest.sales_api.service.impl;
 
-import com.sales_control.rest.sales_api.dto.AuthResponse;
-import com.sales_control.rest.sales_api.dto.LoginRequest;
-import com.sales_control.rest.sales_api.dto.RegisterRequest;
+import com.sales_control.rest.sales_api.dto.login.AuthResponse;
+import com.sales_control.rest.sales_api.dto.login.LoginRequest;
+import com.sales_control.rest.sales_api.dto.login.RegisterRequest;
 import com.sales_control.rest.sales_api.entities.UsersEntity;
 import com.sales_control.rest.sales_api.exceptions.BadRequestException;
 import com.sales_control.rest.sales_api.repository.UsersRepository;

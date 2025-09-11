@@ -1,7 +1,7 @@
 package com.sales_control.rest.sales_api.service.impl;
 
-import com.sales_control.rest.sales_api.dto.CategoryRequestDTO;
-import com.sales_control.rest.sales_api.dto.CategoryResponseDTO;
+import com.sales_control.rest.sales_api.dto.categories.CategoryRequestDTO;
+import com.sales_control.rest.sales_api.dto.categories.CategoryResponseDTO;
 import com.sales_control.rest.sales_api.entities.CategoryEntity;
 import com.sales_control.rest.sales_api.entities.UsersEntity;
 import com.sales_control.rest.sales_api.exceptions.ResourceAlreadyExistsException;
