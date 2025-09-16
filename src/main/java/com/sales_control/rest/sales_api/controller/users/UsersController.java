@@ -1,10 +1,9 @@
 package com.sales_control.rest.sales_api.controller.users;
 
-import com.sales_control.rest.sales_api.dto.RegisterUserDTO;
-import com.sales_control.rest.sales_api.dto.UsersDTO;
+import com.sales_control.rest.sales_api.dto.users.UserResponseDTO;
+import com.sales_control.rest.sales_api.repository.UsersRepository;
 import com.sales_control.rest.sales_api.service.contract.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 public class UsersController {
 
     private static Logger log = Logger.getLogger(String.valueOf(UsersController.class));
@@ -20,19 +19,13 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
-
-    @PostMapping("/createUser")
-    public ResponseEntity<?> createUser(@RequestBody RegisterUserDTO users){
-        log.info("Inicio metodo createUsuario en UsersController");
-        RegisterUserDTO newUser = usersService.createUser(users);
-        log.info("Termina metodo createUser en UsersController");
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
-    }
+    @Autowired
+    private UsersRepository usersRepository;
 
     @PutMapping("/updateUser/{userId}")
-    public ResponseEntity<?> updateUser(@PathVariable Long userId, @RequestBody UsersDTO users){
+    public ResponseEntity<?> updateUser(@PathVariable Long userId, @RequestBody UserResponseDTO users){
         log.info("Inicia metodo updateUser en UsersController");
-        UsersDTO userUpdated = usersService.updateUser(userId, users);
+        UserResponseDTO userUpdated = usersService.updateUser(userId, users);
         log.info("Termina metodo updateUser en UsersController");
         return ResponseEntity.ok(userUpdated);
     }
@@ -40,7 +33,7 @@ public class UsersController {
     @GetMapping("/getUser/{userId}")
     public ResponseEntity<?> findUserById(@PathVariable Long userId){
         log.info("Inicia metodo getUser en UsersController");
-        UsersDTO userFound = usersService.findUserById(userId);
+        UserResponseDTO userFound = usersService.findUserById(userId);
         log.info("Termina metodo getUser en UsersController");
         return ResponseEntity.ok(userFound);
     }
@@ -48,7 +41,7 @@ public class UsersController {
     @GetMapping("/getAllUsers")
     public ResponseEntity<?> findAllUsers (){
         log.info("Inicia metodo getAllUsers en UsersController");
-        List<UsersDTO> usersFound = usersService.findAllUsers();
+        List<UserResponseDTO> usersFound = usersService.findAllUsers();
         log.info("Termina metodo getAllUsers en UsersController");
         return ResponseEntity.ok(usersFound);
     }

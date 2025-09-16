@@ -1,6 +1,6 @@
 package com.sales_control.rest.sales_api.mapper;
 
-import com.sales_control.rest.sales_api.dto.UsersDTO;
+import com.sales_control.rest.sales_api.dto.users.UserResponseDTO;
 import com.sales_control.rest.sales_api.entities.UsersEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,16 @@ public class UsersMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public UsersEntity toEntity(UsersDTO usersDTO){
-        return modelMapper.map(usersDTO, UsersEntity.class);
+    public UsersEntity toEntity(UserResponseDTO userResponseDTO){
+        return modelMapper.map(userResponseDTO, UsersEntity.class);
     }
 
-    public void toEntity(UsersDTO usersDTO, UsersEntity existingUserEntity){
-        modelMapper.map(usersDTO, existingUserEntity);
+    public void toEntity(UserResponseDTO userResponseDTO, UsersEntity existingUserEntity){
+        modelMapper.map(userResponseDTO, existingUserEntity);
     }
 
-    public UsersDTO toDTO (UsersEntity usersEntity){
-        return modelMapper.map(usersEntity, UsersDTO.class);
+    public UserResponseDTO toDTO (UsersEntity usersEntity){
+        return modelMapper.map(usersEntity, UserResponseDTO.class);
     }
 
 
