@@ -1,11 +1,9 @@
 package com.sales_control.rest.sales_api.service.impl;
 
-import com.sales_control.rest.sales_api.dto.RegisterUserDTO;
-import com.sales_control.rest.sales_api.dto.UsersDTO;
+import com.sales_control.rest.sales_api.dto.users.UserResponseDTO;
 import com.sales_control.rest.sales_api.entities.UsersEntity;
 import com.sales_control.rest.sales_api.exceptions.BadRequestException;
 import com.sales_control.rest.sales_api.exceptions.ResourceNotFoundException;
-import com.sales_control.rest.sales_api.mapper.RegisterUserMapper;
 import com.sales_control.rest.sales_api.mapper.UsersMapper;
 import com.sales_control.rest.sales_api.repository.UsersRepository;
 import com.sales_control.rest.sales_api.service.contract.UsersService;
@@ -26,36 +24,19 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private UsersMapper usersMapper;
 
-    @Autowired
-    private RegisterUserMapper registerUserMapper;
-
     @Override
-    public RegisterUserDTO createUser(RegisterUserDTO registerUserDTO) {
-        log.info("Inicio metodo createUser en UsersServiceImpl");
-        if (usersRepository.existsByEmail(registerUserDTO.getEmail())){
-            throw new BadRequestException("Ya existe un user con ese email.");
-        }
-
-        UsersEntity usersEntity = registerUserMapper.toEntity(registerUserDTO);
-        UsersEntity savedUser = usersRepository.save(usersEntity);
-
-        log.info("Termina metodo newUser en UsersServiceImpl");
-        return registerUserMapper.toDTO(savedUser);
-    }
-
-    @Override
-    public UsersDTO updateUser(Long userID, UsersDTO usersDTO) {
+    public UserResponseDTO updateUser(Long userID, UserResponseDTO userResponseDTO) {
         log.info("Inicia metodo updateUser en UsersServiceImpl");
         UsersEntity userFound = usersRepository.findById(userID)
                 .orElseThrow(() -> new ResourceNotFoundException("User con ID " + userID + " NO encontrado"));
 
-        if (!userFound.getEmail().equals(usersDTO.getEmail()) && usersRepository.existsByEmail(usersDTO.getEmail())) {
+        if (!userFound.getEmail().equals(userResponseDTO.getEmail()) && usersRepository.existsByEmail(userResponseDTO.getEmail())) {
             throw new BadRequestException("Ya existe un usuario con ese email.");
         }
 
-        userFound.setFirstName(usersDTO.getFirstName());
-        userFound.setLastName(usersDTO.getLastName());
-        userFound.setEmail(usersDTO.getEmail());
+        userFound.setFirstName(userResponseDTO.getFirstName());
+        userFound.setLastName(userResponseDTO.getLastName());
+        userFound.setEmail(userResponseDTO.getEmail());
 
         UsersEntity updatedUser = usersRepository.save(userFound);
         log.info("Termina metodo updateUser en UsersServiceImpl");
@@ -63,7 +44,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersDTO findUserById(Long userId) {
+    public UserResponseDTO findUserById(Long userId) {
         log.info("Inicio metodo getUserById en UsersServiceImpl");
         UsersEntity getUserById = usersRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User con ID " + userId + " NO encontrado"));
@@ -72,7 +53,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public List<UsersDTO> findAllUsers() {
+    public List<UserResponseDTO> findAllUsers() {
         log.info("Inicio metodo getAllsUsers en UsersServiceImpl");
         List<UsersEntity> getAllUsers = usersRepository.findAll();
         log.info("Termina metodo getUserById en UsersServiceImpl");

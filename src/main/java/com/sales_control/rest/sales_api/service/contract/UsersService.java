@@ -1,20 +1,17 @@
 package com.sales_control.rest.sales_api.service.contract;
 
-import com.sales_control.rest.sales_api.dto.RegisterUserDTO;
-import com.sales_control.rest.sales_api.dto.UsersDTO;
+import com.sales_control.rest.sales_api.dto.users.UserResponseDTO;
 import com.sales_control.rest.sales_api.entities.UsersEntity;
 
 import java.util.List;
 
 public interface UsersService {
 
-    RegisterUserDTO createUser (RegisterUserDTO users);
+    UserResponseDTO updateUser(Long userID, UserResponseDTO users);
 
-    UsersDTO updateUser(Long userID, UsersDTO users);
+    UserResponseDTO findUserById(Long userId);
 
-    UsersDTO findUserById(Long userId);
-
-    List<UsersDTO> findAllUsers();
+    List<UserResponseDTO> findAllUsers();
 
     UsersEntity deleteUserById(Long userId);
 }
