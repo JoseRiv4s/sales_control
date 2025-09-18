@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/category/**").authenticated()
                         .requestMatchers("/api/v1/products/**").authenticated()
                         .requestMatchers("/api/v1/users/**").authenticated()
+                        .requestMatchers("/api/v1/customers/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager -> sessionManager
