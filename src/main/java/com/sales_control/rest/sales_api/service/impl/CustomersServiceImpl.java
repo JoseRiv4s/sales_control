@@ -86,6 +86,7 @@ public class CustomersServiceImpl implements CustomersService {
         CustomerEntity updatedCustomer = customersRepository.save(customer);
 
         CustomerResponseDTO updateResponse = new CustomerResponseDTO();
+        updateResponse.setCustomerId(updatedCustomer.getCustomerId());
         updateResponse.setFirstName(updatedCustomer.getFirstName());
         updateResponse.setLastName(updatedCustomer.getLastName());
         updateResponse.setAddress(updatedCustomer.getAddress());
@@ -125,11 +126,13 @@ public class CustomersServiceImpl implements CustomersService {
                 .stream()
                 .map(customer -> {
                     CustomerResponseDTO customerResponse = new CustomerResponseDTO();
+                    customerResponse.setCustomerId(customer.getCustomerId());
                     customerResponse.setFirstName(customer.getFirstName());
                     customerResponse.setLastName(customer.getLastName());
                     customerResponse.setAddress(customer.getAddress());
                     customerResponse.setEmail(customer.getEmail());
                     customerResponse.setPhone(customer.getPhone());
+                    customerResponse.setDocumentId(customer.getDocumentId());
                     log.info("Termina metodo findAllCustomers en CustomersServiceImpl");
                     return customerResponse;
 
